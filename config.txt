@@ -1,0 +1,1 @@
+{'DIR_INIT': 'ggm_init', 'DIR_DST': 'ggm_classificat', 'MIDA_PETITA': 10, 'MIDA_MITJANA': 17, 'EXTENSIO_FILTRADA': ['bin', 'pdf', 'exe'], 'DIR_QUARANTENA': 'quarantena', 'ZIP_FILE': 'output.zip', 'REPORT_FILE': 'report.inf'}
