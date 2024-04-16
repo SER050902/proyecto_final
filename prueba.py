@@ -1,5 +1,11 @@
+import os
+
+
+path = os.path.basename('/home/x6474242h/PycharmProjects/proyecto_final/config.txt')
+ggm_init = os.getcwd()
+
 configuracion = {
-    "DIR_INIT": "ggm_init",
+    "DIR_INIT": f'{path}',
     "DIR_DST": "ggm_classificat",
     "MIDA_PETITA": 10,
     "MIDA_MITJANA": 17,
@@ -52,4 +58,4 @@ def mostrar_configuraciones():
     for clave, valor in configuracion.items():
         print(clave, "=", valor)
 
-cambiar_parametros()
+mostrar_configuraciones()
