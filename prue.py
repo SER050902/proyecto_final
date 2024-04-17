@@ -1,7 +1,7 @@
 import os
 
 
-path = os.path.basename('/home/x6474242h/PycharmProjects/proyecto_final/config.txt')
+path = os.path.basename('../proyecto_final/config.txt')
 ggm_init = os.getcwd()
 
 configuracion = {

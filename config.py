@@ -1,29 +1,35 @@
 import os
 
 
-path = os.path.basename('/home/x6474242h/PycharmProjects/proyecto_final/config.txt')
-ggm_init = os.getcwd()
-path1 = os.path.dirname('/home/x6474242h/PycharmProjects/proyecto_final/prueba.txt')
+ggm_init = os.path.basename('../proyecto_final/config.txt')
+ggm_classificat = os.path
+mida_mitjana = 17
+
+extension = ['pdf']
+
 configuracion = {
-    "DIR_INIT": f'{path}',
+    "DIR_INIT": f'{ggm_init}',
     "DIR_DST": '',
-    "MIDA_PETITA": '',
+    "MIDA_PETITA": f'' + 'MB',
     "MIDA_MITJANA": '',
-    "EXTENSIO_FILTRADA": ["bin", "pdf", "exe"],
+    "EXTENSIO_FILTRADA": f'{extension}',
     "DIR_QUARANTENA": "quarantena",
     "ZIP_FILE": "output.zip",
     "REPORT_FILE": "report.inf"
 }
 
 
+
 def Carregar_config():
-    global configuracion
+    global configuracion,extension
     archivo = input('Introduce el nombre del archivo: ')
     try:
-        with open(archivo, 'r') as file:
+        with (open(archivo, 'r') as file):
             contenido = file.read()
-            if archivo.endswith('.txt'):
-                print('Contenido del archivo', archivo, ':')
+            if archivo != extension:
+                print('el pdf es extension filtrado')
+                if archivo.endswith('.txt'):
+                    print('Contenido del archivo', archivo, ':')
             else:
                 print('No se puede abrir el archivo',archivo)
             print(contenido)
@@ -34,6 +40,8 @@ def Carregar_config():
 
 
 def veure_config():
+    global configuracion
+    print(configuracion,'\n')
     with open('config.txt') as f:
         lines = f.readlines()
         for line in lines:
@@ -44,23 +52,29 @@ def guardar_config():
     with open('config.txt', 'w') as f:
         f.write(str(configuracion))
 
+
 def cambiar_parametros():
-    print('LA INFORMACION DE',path)
+    print('LA INFORMACION DE', ggm_init)
     veure_config()
     clave = input("Quin paràmetre vols canviar? (Escriu el nom del paràmetre): ")
-    if clave in configuracion:
-        print("El valor actual de", clave, "és:", configuracion[clave])
-        nou_valor = input("Introdueix el nou valor per a " + clave + ": ")
-
-        if nou_valor:
-            configuracion[clave] = nou_valor
-            print("El valor de", clave, "s'ha canviat a:", configuracion[clave])
-            guardar_config()
-            veure_config()
-            print("Cambiado correctamente")
-    else:
+    if clave not in configuracion:
         print("La clau", clave, "no existeix a la configuració.")
+        return
+    print("El valor actual de", clave, "és:", configuracion[clave])
+    nou_valor = input("Introdueix el nou valor per a " + clave + ": ")
 
+    if nou_valor:
+        if clave == 'MIDA_PETITA' and int(nou_valor) > 10:
+            print('El valor debe ser igual o menor que 10.')
+        else:
+            if clave == 'MIDA_MITJANA' and (int(nou_valor) < 10 or int(nou_valor) > 17):
+                print('El valor debe estar entre 10 y 17.')
+            else:
+                configuracion[clave] = nou_valor
+                print("El valor de", clave, "s'ha canviat a:", configuracion[clave])
+                guardar_config()
+                veure_config()
+                print("Cambiado correctamente")
 
 
 def mostrar_configuraciones():
@@ -69,4 +83,4 @@ def mostrar_configuraciones():
     for clave, valor in configuracion.items():
         print(clave, "=", valor)
 
-cambiar_parametros()
+
