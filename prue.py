@@ -15,3 +15,4 @@ configuracion = {
     "REPORT_FILE": "report.inf"
 }
 
+print(configuracion['DIR_INIT'])

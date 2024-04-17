@@ -1,45 +1,5 @@
-import argparse
+import config
 
-def veure_config():
-    with open('config.txt') as f:
-        lines = f.readlines()
-        for line in lines:
-            print(line.strip())
-
-
-configuracion = {
-    "DIR_INIT": "ggm_init",
-    "DIR_DST": "ggm_classificat",
-    "MIDA_PETITA": 10,
-    "MIDA_MITJANA": 17,
-    "EXTENSIO_FILTRADA": ["bin", "pdf", "exe"],
-    "DIR_QUARANTENA": "quarantena",
-    "ZIP_FILE": "output.zip",
-    "REPORT_FILE": "report.inf"
-}
-
-
-def Carregar_config():
-    global configuracion
-    archivo = input('Introduce el nombre del archivo: ')
-    if archivo in configuracion:
-        valor = configuracion[archivo]
-        print('El archivo', valor, 'existe y sus valores son:')
-        print("'archivo'", ':', valor)
-    else:
-        print('La clave', archivo, 'no existe en la configuración.')
-
-    guardar_config()
-
-
-def guardar_config():
-    global configuracion
-    with open('config.txt', 'w') as f:
-        f.write(str(configuracion))
-
-
-def cambiar_contraseña():
-    print('Función para cambiar la contraseña')
 
 def menu_configuración():
     while True:
@@ -53,11 +13,11 @@ def menu_configuración():
         while opcion not in [0, 1, 2, 3, 4, 5]:
             opcion = int(input('Opción: '))
         if opcion == 1:
-            veure_config()
+            config.veure_config()
         elif opcion == 2:
-            Carregar_config()
+            config.Carregar_config()
         elif opcion == 3:
-            break
+            config.cambiar_parametros()
         else:
             print('Opción no válida. Por favor, elige una opción válida.')
 
